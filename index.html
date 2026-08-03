@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
 <title>Midwest Cards — Email Signature Generator</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -109,11 +110,6 @@
           </label>
 
           <label class="field">
-            <span class="lab">Location</span>
-            <select id="f_loc" class="inp"></select>
-          </label>
-
-          <label class="field">
             <span class="lab">Headshot URL (optional)</span>
             <input id="f_photo" class="inp" placeholder="https://midwestcards.github.io/mwc-email-signature/assets/headshots/you.jpg" />
             <span class="hint">Square photo works best. Add your photo to this repo's <code>assets/headshots/</code> folder (ask Tyler) for a permanent URL, then paste it here. Leave blank to show only the logo.</span>
@@ -191,10 +187,6 @@ const CONFIG = {
   navy: "#001D48",   // Navy Deep (brand guide)
   gold: "#E8B144",   // Accent Gold
   link: "#1E3E6B",   // Secondary Blue — text links use this
-  locations: [
-    "1171 Goodale Blvd Columbus, Ohio 43212",
-    "401 N Front St STE 95 Columbus, Ohio 43215",
-  ],
   // All images are hosted in this repo's assets/ folder (served by GitHub Pages).
   // Replace a file in assets/ (same filename) and push to update it for everyone.
   assets: {
@@ -208,7 +200,6 @@ const CONFIG = {
     mobileIcon: `${ASSET_BASE}/icons/mobile.png`,
     phoneIcon: `${ASSET_BASE}/icons/phone.png`,
     emailIcon: `${ASSET_BASE}/icons/email.png`,
-    addressIcon: `${ASSET_BASE}/icons/address.png`,
     webIcon: `${ASSET_BASE}/icons/website.png`,
   },
 };
@@ -269,15 +260,11 @@ function buildSignature(f) {
     emailHtml = line(ic(a.emailIcon) + `<a href="mailto:${email}" style="color:${link};text-decoration:none">${esc(email)}</a>`) + "<br>";
   }
 
-  const address = (f.location || CONFIG.locations[0]).trim();
-  const mapsUrl = `https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(address)}`;
-  const addrHtml = line(ic(a.addressIcon) + `<a href="${mapsUrl}" target="_blank" style="color:#000;text-decoration:none">${esc(address)}</a>`) + "<br>";
-
   const webHtml = line(ic(a.webIcon) + `<a href="${CONFIG.website}" target="_blank" style="text-decoration:none"><span style="font-weight:700;color:#000;font-size:9pt">${CONFIG.websiteDisplay}</span></a>`);
 
   const banner = `<p style="margin:20px 0 0"><a href="${CONFIG.insiderUrl}" target="_blank" style="text-decoration:none"><img src="${a.bannerUrl}" alt="Become a Midwest Insider" width="330" style="border:0;vertical-align:middle;max-width:330px;height:auto"></a></p>`;
 
-  const rightCol = `<td valign="top" style="padding:0 0 10px;font-family:Arial,sans-serif;color:#000"><span style="font-size:20pt;font-weight:700">${name}</span><span style="font-size:12pt"><br>${roleLine}</span><br><br>${phoneHtml}${emailHtml}${addrHtml}${webHtml}${banner}</td>`;
+  const rightCol = `<td valign="top" style="padding:0 0 10px;font-family:Arial,sans-serif;color:#000"><span style="font-size:20pt;font-weight:700">${name}</span><span style="font-size:12pt"><br>${roleLine}</span><br><br>${phoneHtml}${emailHtml}${webHtml}${banner}</td>`;
 
   return `<table cellspacing="0" cellpadding="0" border="0" style="border-spacing:0;border-collapse:collapse;font-size:14px;font-family:Arial,sans-serif;color:#000000;max-width:500px;background:transparent"><tbody><tr>${leftCol}${rightCol}</tr><tr><td colspan="2" style="padding:10px 0 0;border-top:1px solid #000000"><p style="margin:0 0 10px;font-size:8pt;line-height:1.2;color:#808080;font-family:Arial,sans-serif">${CONFIG.disclaimer}</p></td></tr></tbody></table>`;
 }
@@ -290,7 +277,7 @@ function currentForm() {
   return {
     name: val("f_name"), title: val("f_title"),
     phone1: val("f_p1"), phone2: val("f_p2"),
-    email: val("f_email"), location: val("f_loc"), photoUrl: val("f_photo"),
+    email: val("f_email"), photoUrl: val("f_photo"),
   };
 }
 function render() {
@@ -350,16 +337,8 @@ function copyCode() {
 }
 
 function init() {
-  // populate locations
-  const sel = $("f_loc");
-  CONFIG.locations.forEach((l) => {
-    const o = document.createElement("option");
-    o.value = l; o.textContent = l; sel.appendChild(o);
-  });
-  sel.value = CONFIG.locations[0];
-
   // live updates
-  document.querySelectorAll("#formCard input, #formCard select").forEach((el) => {
+  document.querySelectorAll("#formCard input").forEach((el) => {
     el.addEventListener("input", render);
     el.addEventListener("change", render);
   });
@@ -379,7 +358,6 @@ function init() {
   $("btnCopyCode").addEventListener("click", copyCode);
   $("btnReset").addEventListener("click", () => {
     ["f_name", "f_title", "f_p1", "f_p2", "f_email", "f_photo"].forEach((id) => { $(id).value = ""; });
-    $("f_loc").value = CONFIG.locations[0];
     render();
   });
 

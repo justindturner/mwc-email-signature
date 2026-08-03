@@ -7,7 +7,7 @@ A single-page tool for creating a consistent, branded Midwest Cards email signat
 ## For new team members
 
 1. Open the [live generator](https://midwestcards.github.io/mwc-email-signature/) (or open `index.html` in a browser).
-2. Fill in your name, title, phone, email, and pick your office location.
+2. Fill in your name, title, phone, and email.
 3. Optionally paste a public https link to your headshot.
 4. Click **Copy signature**, then paste into your email client:
    - **Gmail:** Settings (gear) → See all settings → General → Signature → Create new → paste → Save changes.
@@ -18,7 +18,7 @@ A single-page tool for creating a consistent, branded Midwest Cards email signat
 
 Everything lives in `index.html` — no build step, no dependencies.
 
-Team-wide defaults (company links, social URLs, office locations, disclaimer, brand colors, and image assets) live in the **CONFIG** block at the top of the `<script>` in `index.html`. Edit those once, commit, and everyone gets the update.
+Team-wide defaults (company links, social URLs, disclaimer, brand colors, and image assets) live in the **CONFIG** block at the top of the `<script>` in `index.html`. Edit those once, commit, and everyone gets the update.
 
 ### Brand assets
 
@@ -29,6 +29,8 @@ All signature images live in `assets/` and are served by this repo's GitHub Page
 - `icons/` — five social icons (Facebook, X, YouTube, LinkedIn, Instagram) and five contact icons (mobile, phone, email, address, website), gold, from the original team signature
 - `headshots/` — team headshots (e.g. `kate.jpg`); add new ones here so everyone has a permanent photo URL
 
-The address line links to Google Maps, and the signature ends with the full confidentiality disclaimer. To swap an image, replace the file **keeping the same filename** and push — Pages redeploys automatically.
+The signature ends with the full confidentiality disclaimer. To swap an image, replace the file **keeping the same filename** and push — Pages redeploys automatically.
+
+The page carries a `noindex, nofollow` robots meta tag — it's an internal tool and must stay out of search engines. Keep that tag in place, and don't add office addresses anywhere on this page.
 
 ⚠️ Don't rename or delete files in `assets/` — every signature already in use points at those URLs.
