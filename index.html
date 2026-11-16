@@ -7,67 +7,76 @@
 <title>Midwest Cards — Email Signature Generator</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --navy:#001D48; --gold:#E8B144; --link:#1E3E6B;
-    --bg:#F3F5F9; --line:#e5e7eb; --muted:#6b7280;
+    --navy:#103771; --deep:#00122D; --ink:#001D48; --gold:#E8B144; --gold-dark:#BA8926;
+    --bg:#F3F5F8; --line:#CFD7E3; --muted:#5C6B85; --field:#AEBBD0;
+    --head:"Montserrat",Arial,Helvetica,sans-serif;
+    --label:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
   }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:#111827;font-family:'Roboto',Arial,sans-serif;}
-  .disp{font-family:'Barlow Condensed','Arial Narrow',sans-serif;}
-  .wrap{max-width:1100px;margin:0 auto;padding:0 24px;}
-  header{background:var(--navy);}
-  header .wrap{padding:24px 24px;}
-  .eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:.25em;font-size:12px;font-weight:600;font-family:'Barlow Condensed',sans-serif;}
-  h1{color:#fff;font-size:2rem;line-height:1.05;margin:.15rem 0 .25rem;font-weight:700;font-family:'Barlow Condensed',sans-serif;}
-  header p{color:#AEB9CC;font-size:14px;margin:0;}
-  .bar{height:3px;width:64px;background:var(--gold);margin-top:12px;}
-  main{padding:32px 0;}
-  .grid{display:grid;grid-template-columns:1fr;gap:24px;}
-  @media(min-width:900px){.grid{grid-template-columns:1fr 1fr;}}
-  .card{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 1px 2px rgba(0,0,0,.04);}
-  .card-pad{padding:24px;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--head);font-size:15px;line-height:1.5;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 20px;}
+  header{background:var(--deep);border-bottom:5px solid var(--gold);}
+  header .wrap{padding:26px 20px 24px;}
+  .eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:.12em;font-size:14px;font-weight:700;font-family:var(--label);margin:0 0 4px;}
+  h1{color:#fff;font-size:clamp(26px,4vw,34px);line-height:1.1;margin:0;font-weight:800;}
+  header p{color:#B9C6DC;font-size:14px;margin:10px 0 0;max-width:62ch;}
+  main{padding:28px 0 56px;}
+  .grid{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;align-items:start;}
+  @media(min-width:980px){.grid{grid-template-columns:minmax(0,400px) minmax(0,1fr);}}
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;min-width:0;}
+  .pad{padding:22px;}
   .row{display:flex;align-items:center;justify-content:space-between;gap:12px;}
-  .section-title{color:var(--navy);text-transform:uppercase;font-weight:600;letter-spacing:.06em;font-size:18px;font-family:'Barlow Condensed',sans-serif;}
-  label.field{display:block;margin-bottom:16px;}
-  label.field > .lab{display:block;color:var(--navy);text-transform:uppercase;letter-spacing:.08em;font-size:12px;font-weight:600;margin-bottom:4px;font-family:'Barlow Condensed',sans-serif;}
-  .hint{display:block;color:var(--muted);font-size:12px;margin-top:4px;line-height:1.5;}
-  .inp{width:100%;border:1px solid #d1d5db;border-radius:8px;background:#fff;padding:9px 12px;font-size:14px;color:#1f2937;outline:none;font-family:'Roboto',Arial,sans-serif;}
-  .inp:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(0,29,72,.15);}
-  .two{display:grid;grid-template-columns:1fr;gap:16px;}
+  h2{margin:0;font-size:18px;font-weight:800;color:var(--navy);}
+  label.field{display:block;margin-top:16px;}
+  .lab{display:block;color:var(--navy);text-transform:uppercase;letter-spacing:.08em;font-size:13px;font-weight:700;margin-bottom:5px;font-family:var(--label);}
+  .opt{color:var(--muted);font-weight:600;text-transform:none;letter-spacing:0;}
+  .hint{display:block;color:var(--muted);font-size:13px;margin-top:5px;line-height:1.45;}
+  .hint.warn{color:#8A5300;}
+  .inp{width:100%;border:1px solid var(--field);border-radius:8px;background:#fff;padding:9px 11px;font-size:15px;color:var(--ink);font-family:var(--head);}
+  .inp:focus{outline:2px solid var(--navy);outline-offset:1px;}
+  .two{display:grid;grid-template-columns:1fr;gap:0 14px;}
   @media(min-width:520px){.two{grid-template-columns:1fr 1fr;}}
-  .btn{border:none;border-radius:8px;padding:10px 16px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Roboto',sans-serif;transition:opacity .15s;}
-  .btn:hover{opacity:.9;}
+  .btn{font:inherit;font-weight:600;font-size:15px;border-radius:8px;padding:10px 16px;cursor:pointer;border:1px solid transparent;}
   .btn-primary{background:var(--navy);color:#fff;}
-  .btn-gold{background:var(--gold);color:var(--navy);}
-  .btn-ghost{background:#fff;border:1px solid #d1d5db;color:#374151;}
-  .btn-sm{padding:6px 12px;font-size:12px;}
-  .pv-head{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid var(--line);background:#f9fafb;}
-  .pv-title{color:var(--navy);text-transform:uppercase;font-weight:600;letter-spacing:.06em;font-size:14px;font-family:'Barlow Condensed',sans-serif;}
-  .pv-body{padding:24px;overflow-x:auto;}
-  .muted{color:var(--muted);font-size:12px;}
-  .status{font-size:14px;color:var(--navy);}
-  .status.err{color:#b91c1c;}
-  .note{border-radius:12px;border:1px solid var(--gold);background:#FBF3DE;padding:16px;color:#4b4636;}
-  .note h4{margin:0 0 4px;color:var(--navy);text-transform:uppercase;font-size:14px;font-family:'Barlow Condensed',sans-serif;letter-spacing:.04em;}
-  .note p{margin:0;font-size:14px;line-height:1.6;}
-  .codearea{width:100%;min-height:160px;border:1px solid #d1d5db;border-radius:8px;background:#f9fafb;padding:12px;font-size:12px;color:#374151;white-space:pre-wrap;word-break:break-all;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
-  .help > div{margin-bottom:12px;font-size:14px;line-height:1.6;color:#374151;}
-  .help b{color:var(--navy);}
-  .subhead{color:var(--navy);text-transform:uppercase;font-size:12px;font-weight:600;letter-spacing:.08em;margin:16px 0 8px;font-family:'Barlow Condensed',sans-serif;}
-  .actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;}
-  .stack{display:flex;flex-direction:column;gap:16px;}
-  .mt16{margin-top:16px;} .hidden{display:none;}
+  .btn-ghost{background:#fff;color:var(--navy);border-color:var(--field);}
+  .btn-sm{font-size:13px;padding:6px 10px;}
+  .btn:focus-visible,.tab:focus-visible{outline:2px solid var(--navy);outline-offset:2px;}
+  .tabs{display:flex;flex-wrap:wrap;gap:4px;border-bottom:1px solid var(--line);margin-bottom:14px;}
+  .tab{appearance:none;background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-1px;padding:8px 12px 9px;font-family:var(--label);font-weight:700;font-size:16px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);cursor:pointer;}
+  .tab[aria-selected="true"]{color:var(--navy);border-bottom-color:var(--gold-dark);}
+  .tab small{font-family:var(--head);font-weight:600;font-size:12px;letter-spacing:0;text-transform:none;margin-left:4px;}
+  .paper{background:#fff;border:1px solid var(--line);border-radius:8px;overflow-x:auto;}
+  .paper-in{padding:22px 20px;min-width:560px;}
+  .paper-in p.msg{font-family:Arial,Helvetica,sans-serif;color:#2A3345;font-size:14px;margin:0 0 18px;}
+  .plain{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:14px;white-space:pre-wrap;color:#2A3345;margin:0;}
+  .actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:14px;}
+  .status{font-size:14px;font-weight:600;color:#1F6B3A;min-height:1.4em;}
+  .status.err{color:#8A5300;}
+  .use{margin:10px 0 0;font-size:14px;color:var(--muted);}
+  .codearea{width:100%;min-height:150px;border:1px solid var(--field);border-radius:8px;background:#F8FAFC;padding:12px;font-size:12px;color:#374151;white-space:pre-wrap;word-break:break-all;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;}
+  .section-title{font-size:20px;font-weight:800;color:var(--navy);margin:34px 0 4px;}
+  .sub{margin:0 0 16px;color:var(--muted);max-width:72ch;}
+  .steps{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));}
+  .steps h3{font-family:var(--label);font-weight:700;font-size:17px;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);margin:0 0 8px;}
+  .steps ol{margin:0;padding-left:20px;display:grid;gap:6px;font-size:14px;}
+  .steps li::marker{font-family:var(--label);font-weight:700;color:var(--gold-dark);}
+  .steps p{font-size:13px;color:var(--muted);margin:10px 0 0;}
+  .crop{display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;margin-top:12px;}
+  .crop canvas{border-radius:6px;border:1px solid var(--line);width:138px;height:186px;background:#EEF2F8;}
+  .note{font-size:13px;color:var(--muted);border-top:1px solid var(--line);margin-top:40px;padding-top:14px;}
+  .hidden{display:none !important;}
+  #copybox{position:fixed;left:-10000px;top:0;width:640px;background:#fff;}
 </style>
 </head>
 <body>
   <header>
     <div class="wrap">
-      <div class="eyebrow">Midwest Cards</div>
+      <p class="eyebrow">Midwest Cards</p>
       <h1>Email Signature Generator</h1>
-      <p>Fill in your details, preview, and copy a paste-ready signature for Gmail or Outlook.</p>
-      <div class="bar"></div>
+      <p>Fill in your details, check the preview, and copy your signature into Gmail or Outlook. You get three versions: one for new emails, a short one for replies, and plain text for the Gmail phone app.</p>
     </div>
   </header>
 
@@ -76,294 +85,358 @@
       <div class="grid">
 
         <!-- LEFT: form -->
-        <section id="formCard" class="card card-pad">
-          <div class="row" style="margin-bottom:16px">
-            <h2 class="section-title">Your details</h2>
-            <button id="btnReset" class="btn btn-ghost btn-sm">Reset</button>
+        <section id="formCard" class="card pad" aria-labelledby="detailsTitle">
+          <div class="row">
+            <h2 id="detailsTitle">Your details</h2>
+            <button id="btnReset" class="btn btn-ghost btn-sm" type="button">Clear</button>
           </div>
 
           <label class="field">
             <span class="lab">Full name</span>
-            <input id="f_name" class="inp" placeholder="First Last" />
+            <input id="f_name" class="inp" placeholder="First Last" autocomplete="name" />
           </label>
 
           <label class="field">
             <span class="lab">Job title</span>
-            <input id="f_title" class="inp" placeholder="Managing Director" />
-            <span class="hint">“ | Midwest Cards” is added automatically after your title.</span>
+            <input id="f_title" class="inp" placeholder="Store Manager" autocomplete="organization-title" />
+            <span class="hint">Shown exactly as you type it, so use title case (VP Finance, not VP FINANCE). The Midwest Cards logo under the gold line names the company.</span>
           </label>
 
           <div class="two">
             <label class="field">
-              <span class="lab">Mobile phone</span>
-              <input id="f_p1" class="inp" placeholder="(614) 555-0100" />
+              <span class="lab">Phone</span>
+              <input id="f_p1" class="inp" placeholder="614-555-0100" autocomplete="tel" />
             </label>
             <label class="field">
-              <span class="lab">Office phone (optional)</span>
-              <input id="f_p2" class="inp" placeholder="(614) 555-0142" />
+              <span class="lab">Second phone <span class="opt">(optional)</span></span>
+              <input id="f_p2" class="inp" placeholder="614-555-0142" />
             </label>
           </div>
 
           <label class="field">
             <span class="lab">Email</span>
-            <input id="f_email" class="inp" placeholder="name@midwestcards.com" />
+            <input id="f_email" class="inp" placeholder="name@midwestcards.com" autocomplete="email" />
+            <span class="hint">Typing just the part before the @ works too.</span>
           </label>
 
           <label class="field">
-            <span class="lab">Headshot URL (optional)</span>
-            <input id="f_photo" class="inp" placeholder="https://midwestcards.github.io/mwc-email-signature/assets/headshots/you.jpg" />
-            <span class="hint">Square photo works best. Add your photo to this repo's <code>assets/headshots/</code> folder (ask Tyler) for a permanent URL, then paste it here. Leave blank to show only the logo.</span>
+            <span class="lab">Work address <span class="opt">(optional)</span></span>
+            <input id="f_addr" class="inp" placeholder="Street, Suite, City, ST 00000" />
+            <span class="hint">Type your own work address. Leave it blank and the signature shows Columbus, OH.</span>
           </label>
+
+          <label class="field">
+            <span class="lab">Headshot link <span class="opt">(optional)</span></span>
+            <input id="f_photo" class="inp" placeholder="https://midwestcards.github.io/mwc-email-signature/assets/headshots/you.jpg" />
+            <span class="hint" id="h_photo">A public https link. Best: a 3:4 portrait (276 × 372 px) added to this repo's <code>assets/headshots/</code> folder (ask Tyler). A Google Drive link to a photo shared "anyone with the link" also works and is cropped for you. Leave blank for no photo.</span>
+          </label>
+
+          <details style="margin-top:14px">
+            <summary class="lab" style="cursor:pointer;display:list-item">Make a 276 × 372 headshot from any photo</summary>
+            <div class="crop">
+              <canvas id="cropCanvas" width="276" height="372" aria-label="Cropped headshot preview"></canvas>
+              <div style="flex:1;min-width:180px">
+                <input id="cropFile" type="file" accept="image/*" />
+                <p class="hint">Pick a photo with your face near the middle. It's cropped to 3:4 and sized for the signature, then you can download it and send it to Tyler for <code>assets/headshots/</code>.</p>
+                <a id="cropDownload" class="btn btn-ghost btn-sm hidden" download="headshot.jpg" href="#">Download headshot.jpg</a>
+              </div>
+            </div>
+          </details>
         </section>
 
         <!-- RIGHT: preview + actions -->
-        <section class="stack">
-          <div class="card">
-            <div class="pv-head">
-              <span class="pv-title">Live preview</span>
-              <span class="muted">renders as it will in email</span>
-            </div>
-            <div class="pv-body"><div id="preview"></div></div>
+        <section class="card pad" aria-labelledby="pvTitle">
+          <div class="row" style="margin-bottom:10px"><h2 id="pvTitle">Preview</h2><span class="hint" style="margin:0">Renders the way it will in email</span></div>
+          <div class="tabs" role="tablist" aria-label="Signature versions">
+            <button type="button" class="tab" role="tab" id="t_full" aria-selected="true" aria-controls="pane">Full <small>new emails</small></button>
+            <button type="button" class="tab" role="tab" id="t_reply" aria-selected="false" aria-controls="pane">Reply <small>replies &amp; forwards</small></button>
+            <button type="button" class="tab" role="tab" id="t_plain" aria-selected="false" aria-controls="pane">Phone app <small>plain text</small></button>
           </div>
-
-          <div class="card card-pad">
-            <div class="actions">
-              <button id="btnCopySig" class="btn btn-primary">Copy signature</button>
-              <button id="btnShowCode" class="btn btn-ghost">Show HTML</button>
-              <button id="btnShowHelp" class="btn btn-ghost">How to install</button>
-              <span id="status" class="status"></span>
-            </div>
-
-            <div id="codeBlock" class="mt16 hidden">
-              <div class="row" style="margin-bottom:8px">
-                <span class="subhead" style="margin:0">Raw HTML</span>
-                <button id="btnCopyCode" class="btn btn-gold btn-sm">Copy code</button>
-              </div>
-              <textarea id="code" class="codearea" readonly></textarea>
-            </div>
-
-            <div id="helpBlock" class="mt16 help hidden">
-              <div><b>Gmail:</b> Settings (gear) → See all settings → General → Signature → Create new → click the signature box and paste (⌘/Ctrl-V) → Save changes.</div>
-              <div><b>Outlook (web / new):</b> Settings → Mail → Compose and reply → paste into the signature editor → Save.</div>
-              <div><b>Outlook (Windows desktop):</b> Use Show HTML → Copy code, or paste the rendered signature directly into File → Options → Mail → Signatures.</div>
-            </div>
+          <div class="paper" id="pane" role="tabpanel" aria-labelledby="t_full">
+            <div class="paper-in"><p class="msg" id="msg"></p><div id="preview"></div></div>
           </div>
-
-          <div class="note">
-            <h4>Brand assets</h4>
-            <p>
-              The logo, Insider banner, and all social/contact icons are hosted in this repo’s
-              <code>assets/</code> folder and wired in via the <b>CONFIG</b> block at the top of
-              <code>index.html</code>. To swap one, replace the file in <code>assets/</code>
-              <b>keeping the same filename</b> and push — GitHub Pages redeploys automatically.
-              Never rename or delete files there: every signature already in use points at those URLs.
-            </p>
+          <div class="actions">
+            <button id="btnCopySig" class="btn btn-primary" type="button">Copy signature</button>
+            <button id="btnShowCode" class="btn btn-ghost" type="button">Show HTML</button>
+            <span id="status" class="status" role="status" aria-live="polite"></span>
+          </div>
+          <p class="use" id="use"></p>
+          <div id="codeBlock" class="hidden" style="margin-top:12px">
+            <div class="row" style="margin-bottom:8px">
+              <span class="lab" style="margin:0">Raw HTML</span>
+              <button id="btnCopyCode" class="btn btn-ghost btn-sm" type="button">Copy code</button>
+            </div>
+            <textarea id="code" class="codearea" readonly></textarea>
           </div>
         </section>
-
       </div>
+
+      <h2 class="section-title">Install it</h2>
+      <p class="sub">Set up all three. Paste straight into the signature box; don't retype anything.</p>
+      <div class="steps">
+        <div class="card pad">
+          <h3>Gmail on a computer</h3>
+          <ol>
+            <li>Copy the <b>Full</b> signature.</li>
+            <li>Gmail gear → <b>See all settings</b> → <b>General</b> → <b>Signature</b>.</li>
+            <li><b>Create new</b>, name it “MWC full”, click in the box and paste.</li>
+            <li>Copy the <b>Reply</b> version and create “MWC reply” the same way.</li>
+            <li>Under <b>Signature defaults</b>: MWC full for new emails, MWC reply for replies and forwards.</li>
+            <li>Tick <b>Insert signature before quoted text</b>, then <b>Save Changes</b> at the bottom.</li>
+          </ol>
+        </div>
+        <div class="card pad">
+          <h3>Gmail phone app</h3>
+          <ol>
+            <li>Copy the <b>Phone app</b> version.</li>
+            <li>App settings → your account.</li>
+            <li><b>Signature settings</b> (iPhone) or <b>Mobile signature</b> (Android), turn it on, paste.</li>
+          </ol>
+          <p>The app only takes plain text, so this one has no logo or photo.</p>
+        </div>
+        <div class="card pad">
+          <h3>Outlook</h3>
+          <ol>
+            <li>Copy the <b>Full</b> signature.</li>
+            <li>New Outlook or web: Settings → <b>Account</b> → <b>Signatures</b>. Classic Windows: File → Options → Mail → <b>Signatures</b>.</li>
+            <li>Add new, paste, repeat for Reply, set the defaults, save.</li>
+          </ol>
+          <p>If pasting drops the formatting, use <b>Show HTML → Copy code</b>.</p>
+        </div>
+      </div>
+
+      <p class="note">
+        Fonts are the brand fonts, Montserrat and Barlow Condensed. People who don't have them installed see Arial in the same layout; email can't send fonts along with a signature.
+        Images load from this repo's <code>assets/</code> folder. Never rename or delete files there: every signature in use points at those URLs.
+      </p>
     </div>
   </main>
 
+  <div id="copybox" aria-hidden="true"></div>
+
 <script>
 /* =========================================================================
-   CONFIG — set once for the whole team, then commit + redeploy.
-   Paste permanent, public https image URLs into "assets" below.
+   CONFIG — set once for the whole team, then commit. GitHub Pages redeploys.
    ========================================================================= */
 const ASSET_BASE = "https://midwestcards.github.io/mwc-email-signature/assets";
 const CONFIG = {
   company: "Midwest Cards",
   website: "https://www.midwestcards.com/",
-  websiteDisplay: "www.midwestcards.com",
-  insiderUrl: "https://www.midwestcards.com/insider",
-  social: {
-    facebook: "https://www.facebook.com/MidwestCards",
-    twitter: "https://twitter.com/midwest_cards",
-    youtube: "https://www.youtube.com/@midwestcards",
-    linkedin: "https://linkedin.com/company/midwest-cards",
-    instagram: "https://www.instagram.com/midwestcardshq/",
-  },
-  disclaimer: "The content of this email is confidential and intended for the recipient specified in message only. It is strictly forbidden to share any part of this message with any third party, without a written consent of the sender. If you received this message by mistake, please reply to this message and follow with its deletion, so that we can ensure such a mistake does not occur in the future.",
-  navy: "#001D48",   // Navy Deep (brand guide)
-  gold: "#E8B144",   // Accent Gold
-  link: "#1E3E6B",   // Secondary Blue — text links use this
-  // All images are hosted in this repo's assets/ folder (served by GitHub Pages).
-  // Replace a file in assets/ (same filename) and push to update it for everyone.
-  assets: {
-    logoUrl: `${ASSET_BASE}/midwestcards_horizontal_color.png`,
-    bannerUrl: `${ASSET_BASE}/insider_banner.png`,
-    fbIcon: `${ASSET_BASE}/icons/fb.png`,
-    twIcon: `${ASSET_BASE}/icons/x.png`,
-    ytIcon: `${ASSET_BASE}/icons/yt.png`,
-    liIcon: `${ASSET_BASE}/icons/li.png`,
-    igIcon: `${ASSET_BASE}/icons/ig.png`,
-    mobileIcon: `${ASSET_BASE}/icons/mobile.png`,
-    phoneIcon: `${ASSET_BASE}/icons/phone.png`,
-    emailIcon: `${ASSET_BASE}/icons/email.png`,
-    webIcon: `${ASSET_BASE}/icons/website.png`,
-  },
+  websiteDisplay: "midwestcards.com",
+  defaultLocation: "Columbus, OH",            // shown when no work address is entered
+  links: [                                      // the link row under the contact lines
+    ["Instagram", "https://www.instagram.com/midwestcardshq/"],
+    ["Whatnot Live", "https://www.whatnot.com/user/midwestcards"],
+    ["Midwest Insider", "https://www.midwestcards.com/midwest-insider"],
+  ],
+  disclaimer: "The content of this email is confidential and intended for the recipient specified in this message only.",
+  logoUrl: `${ASSET_BASE}/midwestcards_horizontal_color.png`,   // 1734 x 342, shown at 150 x 30
+  // Brand colors (02_Visual_Identity): navy, dark navy text, gold, dark gold, muted grey
+  navy: "#103771", ink: "#001D48", gold: "#E8B144", goldDark: "#BA8926", muted: "#5C6B85",
 };
+// Brand fonts with email-safe fallbacks
+const MONT = "font-family:Montserrat,Arial,Helvetica,sans-serif;";
+const BARLOW = "font-family:'Barlow Condensed','Arial Narrow',Arial,Helvetica,sans-serif;";
+// Photo is a 3:4 portrait shown at 138 x 186, the exact height of the text block
+// (name 26 + title 29 + gold line & logo 52 + three contact lines 57 + links 22).
+const PHOTO_W = 138, PHOTO_H = 186;
 
-/* ---- sanitizers ---- */
-const esc = (s = "") =>
-  String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-const safeUrl = (u = "") => {
-  const t = String(u).trim();
-  if (/^https?:\/\//i.test(t) || /^data:image\//i.test(t)) return t.replace(/"/g, "%22");
-  return "";
-};
-const safeEmail = (e = "") => String(e).trim().replace(/[<>"]/g, "");
+/* ---- helpers ---- */
+const esc = (s = "") => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const clean = (s = "") => String(s).replace(/\s+/g, " ").trim();
+const txt = (size, lh, weight, color, extra = "") => `font-size:${size}px;line-height:${lh}px;font-weight:${weight};color:${color};${extra}`;
+const T = (style = "", attrs = "") => `<table cellpadding="0" cellspacing="0" border="0" role="presentation"${attrs ? " " + attrs : ""} style="border-collapse:separate;${style}">`;
+const a = (href, inner, color) => `<a href="${href}" target="_blank" style="color:${color};text-decoration:none;">${inner}</a>`;
+const bar = () => `<span style="color:${CONFIG.gold};">&nbsp;&nbsp;|&nbsp;&nbsp;</span>`;
+const dot = () => `<span style="color:${CONFIG.gold};">&nbsp;&nbsp;&bull;&nbsp;&nbsp;</span>`;
 
-/* ---- signature builder (email-safe HTML string, matches the team template) ---- */
-function buildSignature(f) {
-  const a = CONFIG.assets;
-  const photoUrl = safeUrl(f.photoUrl);
-  const name = esc(f.name) || "Your Name";
-  const email = safeEmail(f.email);
-  const link = CONFIG.link;
+// 6145550100 / (614) 555-0100 / 614.555.0100 / +1 614 555 0100 -> 614-555-0100
+function formatPhone(p) {
+  const t = clean(p); if (!t) return "";
+  let d = t.replace(/\D/g, "");
+  if (d.length === 11 && d[0] === "1") d = d.slice(1);
+  return d.length === 10 ? `${d.slice(0, 3)}-${d.slice(3, 6)}-${d.slice(6)}` : t;
+}
+const telHref = (p) => { let d = String(p).replace(/[^\d+]/g, ""); if (/^\d{10}$/.test(d)) d = "+1" + d; return "tel:" + d; };
+function formatEmail(e) { let t = clean(e).toLowerCase().replace(/^mailto:/, "").replace(/[<>"\s]/g, ""); if (t && !t.includes("@")) t += "@midwestcards.com"; return t; }
+const mapsHref = (addr) => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(addr).replace(/%20/g, "+").replace(/%2C/g, "");
 
-  const photo = photoUrl
-    ? `<p style="margin:0 0 40px"><img src="${photoUrl}" alt="${name}" width="95" style="border:0;vertical-align:middle;width:95px;height:auto"></p>`
-    : "";
-
-  const logo = `<p style="margin:0 0 10px"><a href="${CONFIG.website}" target="_blank" style="text-decoration:none"><img src="${a.logoUrl}" alt="Midwest Cards" width="124" style="border:0;vertical-align:middle;width:124px;height:auto"></a></p>`;
-
-  const si = (url, icon, alt) =>
-    `<a href="${url}" target="_blank" style="text-decoration:none"><img src="${icon}" width="15" height="15" alt="${alt}" style="border:0;vertical-align:middle;height:15px;width:15px"></a>`;
-  const social = `<p style="margin:20px 0 10px">${[
-    si(CONFIG.social.facebook, a.fbIcon, "facebook icon"),
-    si(CONFIG.social.twitter, a.twIcon, "twitter icon"),
-    si(CONFIG.social.youtube, a.ytIcon, "youtube icon"),
-    si(CONFIG.social.linkedin, a.liIcon, "linkedin icon"),
-    si(CONFIG.social.instagram, a.igIcon, "instagram icon"),
-  ].join("&nbsp;&nbsp;&nbsp;")}</p>`;
-
-  const leftCol = `<td width="170" valign="top" align="center" style="padding:0 20px 10px 0;text-align:center;width:170px">${photo}${logo}${social}</td>`;
-
-  const roleLine = f.title ? `${esc(f.title)} | ${CONFIG.company}` : CONFIG.company;
-
-  const ic = (icon) =>
-    `<img src="${icon}" width="12" height="12" alt="" style="border:0;vertical-align:middle;height:12px;width:12px">&nbsp;&nbsp;`;
-  const line = (inner) =>
-    `<span style="font-size:9pt;font-family:Arial,sans-serif;color:#000;line-height:1.8">${inner}</span>`;
-
-  const p1 = (f.phone1 || "").trim(), p2 = (f.phone2 || "").trim();
-  let phoneHtml = "";
-  if (p1 && p2) {
-    phoneHtml = line(ic(a.mobileIcon) + esc(p1)) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + line(ic(a.phoneIcon) + esc(p2)) + "<br>";
-  } else if (p1 || p2) {
-    phoneHtml = line(ic(a.mobileIcon) + esc(p1 || p2)) + "<br>";
-  }
-
-  let emailHtml = "";
-  if (email) {
-    emailHtml = line(ic(a.emailIcon) + `<a href="mailto:${email}" style="color:${link};text-decoration:none">${esc(email)}</a>`) + "<br>";
-  }
-
-  const webHtml = line(ic(a.webIcon) + `<a href="${CONFIG.website}" target="_blank" style="text-decoration:none"><span style="font-weight:700;color:#000;font-size:9pt">${CONFIG.websiteDisplay}</span></a>`);
-
-  const banner = `<p style="margin:20px 0 0"><a href="${CONFIG.insiderUrl}" target="_blank" style="text-decoration:none"><img src="${a.bannerUrl}" alt="Become a Midwest Insider" width="330" style="border:0;vertical-align:middle;max-width:330px;height:auto"></a></p>`;
-
-  const rightCol = `<td valign="top" style="padding:0 0 10px;font-family:Arial,sans-serif;color:#000"><span style="font-size:20pt;font-weight:700">${name}</span><span style="font-size:12pt"><br>${roleLine}</span><br><br>${phoneHtml}${emailHtml}${webHtml}${banner}</td>`;
-
-  return `<table cellspacing="0" cellpadding="0" border="0" style="border-spacing:0;border-collapse:collapse;font-size:14px;font-family:Arial,sans-serif;color:#000000;max-width:500px;background:transparent"><tbody><tr>${leftCol}${rightCol}</tr><tr><td colspan="2" style="padding:10px 0 0;border-top:1px solid #000000"><p style="margin:0 0 10px;font-size:8pt;line-height:1.2;color:#808080;font-family:Arial,sans-serif">${CONFIG.disclaimer}</p></td></tr></tbody></table>`;
+// Headshot link: Google Drive / Google photo links are cropped to 3:4 by Google; anything else is used as is.
+function photoSrc(u) {
+  const t = clean(u); if (!/^https:\/\/[^\s"'<>]+$/i.test(t)) return "";
+  const size = `=w${PHOTO_W * 2}-h${PHOTO_H * 2}-c`;
+  let m = t.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/);
+  if (m) return `https://lh3.googleusercontent.com/d/${m[1]}${size}`;
+  if (/^https:\/\/lh\d\.googleusercontent\.com\//.test(t)) return t.replace(/=[^/]*$/, "") + size;
+  return t.replace(/"/g, "%22");
 }
 
-/* ---- wiring ---- */
-const $ = (id) => document.getElementById(id);
-const val = (id) => { const el = $(id); return el ? el.value : ""; };
-
-function currentForm() {
+function normalize(f) {
+  const phones = [formatPhone(f.phone1), formatPhone(f.phone2)].filter(Boolean);
   return {
-    name: val("f_name"), title: val("f_title"),
-    phone1: val("f_p1"), phone2: val("f_p2"),
-    email: val("f_email"), photoUrl: val("f_photo"),
+    name: clean(f.name), title: clean(f.title),
+    phones, email: formatEmail(f.email),
+    addr: clean(f.addr), photo: photoSrc(f.photo),
   };
 }
+
+/* ---- full signature (new emails) ---- */
+function buildFull(f) {
+  const n = normalize(f), C = CONFIG;
+  const name = esc(n.name || "Your Name");
+  const title = esc(n.title || "Your Title");
+  const tel = (p) => a(telHref(p), esc(p), C.ink);
+  const mail = n.email ? a("mailto:" + esc(n.email), esc(n.email), C.ink) : "";
+  const site = a(C.website, `<span style="font-weight:700;">${C.websiteDisplay}</span>`, C.navy);
+  const where = n.addr ? a(mapsHref(n.addr), esc(n.addr), C.ink) : esc(C.defaultLocation);
+  // Always three contact lines so the block stays 186 px tall and lines up with the photo.
+  let l1, l2;
+  if (n.phones.length > 1) { l1 = tel(n.phones[0]) + bar() + tel(n.phones[1]); l2 = [mail, site].filter(Boolean).join(bar()); }
+  else if (n.phones.length === 1) { l1 = [tel(n.phones[0]), mail].filter(Boolean).join(bar()); l2 = site; }
+  else { l1 = mail || site; l2 = mail ? site : ""; }
+  const contact = [l1, l2 || "&nbsp;", where].join("<br>");
+  const links = C.links.map(([label, href]) => a(href, label, C.navy)).join(dot());
+
+  const right =
+    T() +
+      `<tr><td style="${MONT}${txt(22, 26, "800", C.navy, "letter-spacing:0.2px;")}white-space:nowrap;">${name}</td></tr>` +
+      `<tr><td style="padding:3px 0 10px 0;${BARLOW}${txt(15, 16, "700", C.goldDark, "letter-spacing:0.4px;")}white-space:nowrap;">${title}</td></tr>` +
+      `<tr><td style="border-top:2px solid ${C.gold};padding:10px 0 10px 0;">` +
+        a(C.website, `<img src="${C.logoUrl}" width="150" height="30" alt="Midwest Cards" style="display:block;width:150px;height:30px;border:0;outline:none;">`, C.navy) +
+      `</td></tr>` +
+      `<tr><td style="${MONT}${txt(12, 19, "normal", C.ink)}white-space:nowrap;">${contact}</td></tr>` +
+      `<tr><td style="padding:8px 0 0 0;${BARLOW}${txt(13, 14, "700", C.navy, "letter-spacing:0.3px;")}white-space:nowrap;">${links}</td></tr>` +
+    `</table>`;
+  const photoCell = n.photo
+    ? `<td valign="top" width="${PHOTO_W}" style="width:${PHOTO_W}px;padding:0 20px 0 0;"><img src="${n.photo}" width="${PHOTO_W}" height="${PHOTO_H}" alt="${name}" style="display:block;width:${PHOTO_W}px;max-width:${PHOTO_W}px;height:auto;border:0;outline:none;border-radius:6px;"></td>`
+    : "";
+  const width = n.photo ? 510 : 352;
+  return T(`width:${width}px;`, `width="${width}"`) +
+    `<tr>${photoCell}<td valign="top">${right}</td></tr>` +
+    `<tr><td${n.photo ? ' colspan="2"' : ""} style="padding:12px 0 0 0;${BARLOW}${txt(11, 14, "normal", C.muted, "letter-spacing:0.2px;")}">${esc(C.disclaimer)}</td></tr>` +
+  `</table>`;
+}
+
+/* ---- reply / forward signature: text only ---- */
+function buildReply(f) {
+  const n = normalize(f), C = CONFIG;
+  const site = a(C.website, `<span style="font-weight:700;">${C.websiteDisplay}</span>`, C.navy);
+  const line3 = n.phones.length ? a(telHref(n.phones[0]), esc(n.phones[0]), C.ink) + bar() + site : site;
+  return T() + `<tr><td style="border-left:2px solid ${C.gold};padding:1px 0 1px 12px;${MONT}${txt(12, 18, "normal", C.ink)}">` +
+    `<span style="${txt(15, 19, "800", C.navy)}">${esc(n.name || "Your Name")}</span><br>` +
+    `<span style="${BARLOW}${txt(14, 16, "700", C.goldDark, "letter-spacing:0.4px;")}">${esc(n.title || "Your Title")}</span><br>` +
+    line3 + `</td></tr></table>`;
+}
+
+/* ---- plain text (Gmail phone app) ---- */
+function buildPlain(f) {
+  const n = normalize(f);
+  const out = [n.name || "Your Name", (n.title ? n.title + " | " : "") + CONFIG.company];
+  const l3 = [...n.phones, n.email].filter(Boolean).join(" | ");
+  if (l3) out.push(l3);
+  out.push(CONFIG.websiteDisplay);
+  return out.join("\n");
+}
+
+/* ---- page wiring ---- */
+const $ = (id) => document.getElementById(id);
+const FIELDS = { name: "f_name", title: "f_title", phone1: "f_p1", phone2: "f_p2", email: "f_email", addr: "f_addr", photo: "f_photo" };
+const VIEWS = {
+  full: { msg: "Attached is the October close package. Happy to walk through any of it this week.<br><br>Thanks,", use: "Paste into Gmail as “MWC full” and set it as the default for new emails." },
+  reply: { msg: "Sounds good. I'll update it and send it back tonight.<br><br>Thanks,", use: "Paste into Gmail as “MWC reply” and set it as the default for replies and forwards." },
+  plain: { msg: "", use: "Paste into the Gmail phone app's signature setting." },
+};
+let view = "full";
+const form = () => Object.fromEntries(Object.entries(FIELDS).map(([k, id]) => [k, $(id).value]));
+const html = () => (view === "reply" ? buildReply(form()) : buildFull(form()));
+
 function render() {
-  const html = buildSignature(currentForm());
-  $("preview").innerHTML = html;
-  const ta = $("code");
-  if (ta) ta.value = html;
+  const f = form();
+  $("msg").innerHTML = VIEWS[view].msg;
+  $("msg").classList.toggle("hidden", view === "plain");
+  $("use").textContent = VIEWS[view].use;
+  $("preview").innerHTML = view === "plain" ? `<pre class="plain">${esc(buildPlain(f))}</pre>` : html();
+  $("code").value = view === "plain" ? buildPlain(f) : html();
+  $("btnShowCode").classList.toggle("hidden", view === "plain");
+  ["full", "reply", "plain"].forEach((k) => $("t_" + k).setAttribute("aria-selected", k === view ? "true" : "false"));
+  checkPhoto();
+}
+
+// Warn when the headshot isn't 3:4 (it would show shorter or taller than the text block).
+let photoCheckSrc = "";
+function checkPhoto() {
+  const hint = $("h_photo"), src = normalize(form()).photo;
+  if (src === photoCheckSrc) return; photoCheckSrc = src;
+  hint.classList.remove("warn");
+  hint.dataset.base = hint.dataset.base || hint.innerHTML;
+  hint.innerHTML = hint.dataset.base;
+  if (!src) return;
+  const img = new Image();
+  img.onload = () => {
+    if (src !== photoCheckSrc) return;
+    const r = img.naturalWidth / img.naturalHeight;
+    if (Math.abs(r - PHOTO_W / PHOTO_H) > 0.03) {
+      hint.classList.add("warn");
+      hint.innerHTML = `This photo is ${img.naturalWidth} × ${img.naturalHeight}, not 3:4, so it won't line up with the text. Use the headshot maker below, or a Google Drive link.`;
+    }
+  };
+  img.onerror = () => { if (src === photoCheckSrc) { hint.classList.add("warn"); hint.textContent = "That headshot link didn't load. Check that it's public (anyone with the link can view)."; } };
+  img.src = src;
 }
 
 let statusTimer;
-function status(kind) {
-  const el = $("status");
-  el.classList.toggle("err", kind === "err");
-  el.textContent =
-    kind === "sig" ? "✓ Signature copied — paste into your email settings"
-    : kind === "code" ? "✓ HTML copied"
-    : kind === "err" ? "Couldn’t copy — use Show HTML instead" : "";
-  clearTimeout(statusTimer);
-  statusTimer = setTimeout(() => { el.textContent = ""; el.classList.remove("err"); }, 2500);
+function say(msg, err) {
+  const el = $("status"); el.textContent = msg; el.classList.toggle("err", !!err);
+  clearTimeout(statusTimer); statusTimer = setTimeout(() => { el.textContent = ""; el.classList.remove("err"); }, 3000);
+}
+function selectNode(node) { const r = document.createRange(); r.selectNodeContents(node); const s = window.getSelection(); s.removeAllRanges(); s.addRange(r); }
+function execCopyRich(h) {
+  const box = $("copybox"); box.innerHTML = h; selectNode(box);
+  let ok = false; try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+  window.getSelection().removeAllRanges(); box.innerHTML = ""; return ok;
+}
+function copyText(t, okMsg) {
+  const fallback = () => { const ta = document.createElement("textarea"); ta.value = t; ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); let ok = false; try { ok = document.execCommand("copy"); } catch (e) {} ta.remove(); ok ? say(okMsg) : say("Couldn't copy. Select the text and press Ctrl+C.", true); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(() => say(okMsg), fallback); else fallback();
+}
+function copySignature() {
+  if (view === "plain") return copyText(buildPlain(form()), "Copied. Paste it into the Gmail app.");
+  const h = html(), done = () => say("Copied. Paste it into your signature settings.");
+  const fail = () => (execCopyRich(h) ? done() : say("Couldn't copy. Use Show HTML → Copy code.", true));
+  try {
+    if (navigator.clipboard && window.ClipboardItem) {
+      navigator.clipboard.write([new ClipboardItem({ "text/html": new Blob([h], { type: "text/html" }), "text/plain": new Blob([buildPlain(form())], { type: "text/plain" }) })]).then(done, fail);
+      return;
+    }
+  } catch (e) { /* fall through */ }
+  fail();
 }
 
-function copySig() {
-  const node = $("preview");
-  const range = document.createRange();
-  range.selectNodeContents(node);
-  const sel = window.getSelection();
-  sel.removeAllRanges();
-  sel.addRange(range);
-  let ok = false;
-  try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
-  sel.removeAllRanges();
-  if (!ok && navigator.clipboard && window.ClipboardItem) {
-    try {
-      const b = new Blob([node.innerHTML], { type: "text/html" });
-      const t = new Blob([node.innerText], { type: "text/plain" });
-      navigator.clipboard.write([new ClipboardItem({ "text/html": b, "text/plain": t })]);
-      ok = true;
-    } catch (e) { ok = false; }
-  }
-  status(ok ? "sig" : "err");
-}
-
-function fallbackCopyText(text, cb) {
-  const ta = document.createElement("textarea");
-  ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
-  document.body.appendChild(ta); ta.select();
-  try { document.execCommand("copy"); } catch (e) {}
-  document.body.removeChild(ta); cb && cb();
-}
-function copyCode() {
-  const code = $("code").value;
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(code).then(() => status("code")).catch(() => fallbackCopyText(code, () => status("code")));
-  } else {
-    fallbackCopyText(code, () => status("code"));
-  }
+// Headshot maker: center-crop any photo to 3:4 at 276 x 372.
+function cropPhoto(file) {
+  const img = new Image();
+  img.onload = () => {
+    const c = $("cropCanvas"), ctx = c.getContext("2d");
+    const target = PHOTO_W / PHOTO_H; let sw = img.width, sh = img.height, sx = 0, sy = 0;
+    if (sw / sh > target) { sw = sh * target; sx = (img.width - sw) / 2; } else { sh = sw / target; sy = Math.max(0, (img.height - sh) * 0.3); }
+    ctx.imageSmoothingQuality = "high";
+    ctx.drawImage(img, sx, sy, sw, sh, 0, 0, c.width, c.height);
+    const dl = $("cropDownload"); dl.href = c.toDataURL("image/jpeg", 0.9); dl.classList.remove("hidden");
+    URL.revokeObjectURL(img.src);
+  };
+  img.src = URL.createObjectURL(file);
 }
 
 function init() {
-  // live updates
-  document.querySelectorAll("#formCard input").forEach((el) => {
-    el.addEventListener("input", render);
-    el.addEventListener("change", render);
-  });
-
-  // toggles
-  $("btnShowCode").addEventListener("click", () => {
-    const b = $("codeBlock");
-    const open = b.classList.toggle("hidden") === false;
-    $("btnShowCode").textContent = open ? "Hide HTML" : "Show HTML";
-  });
-  $("btnShowHelp").addEventListener("click", () => {
-    $("helpBlock").classList.toggle("hidden");
-  });
-
-  // buttons
-  $("btnCopySig").addEventListener("click", copySig);
-  $("btnCopyCode").addEventListener("click", copyCode);
-  $("btnReset").addEventListener("click", () => {
-    ["f_name", "f_title", "f_p1", "f_p2", "f_email", "f_photo"].forEach((id) => { $(id).value = ""; });
-    render();
-  });
-
+  Object.values(FIELDS).forEach((id) => { $(id).addEventListener("input", render); $(id).addEventListener("change", render); });
+  ["full", "reply", "plain"].forEach((k) => $("t_" + k).addEventListener("click", () => { view = k; render(); }));
+  $("btnCopySig").addEventListener("click", copySignature);
+  $("btnCopyCode").addEventListener("click", () => copyText($("code").value, "HTML copied."));
+  $("btnShowCode").addEventListener("click", () => { const open = $("codeBlock").classList.toggle("hidden") === false; $("btnShowCode").textContent = open ? "Hide HTML" : "Show HTML"; });
+  $("btnReset").addEventListener("click", () => { Object.values(FIELDS).forEach((id) => { $(id).value = ""; }); render(); });
+  $("cropFile").addEventListener("change", (e) => { if (e.target.files[0]) cropPhoto(e.target.files[0]); });
   render();
 }
-
 document.addEventListener("DOMContentLoaded", init);
 </script>
 </body>
