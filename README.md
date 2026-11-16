@@ -29,7 +29,8 @@ Typed text is title case. The logo wordmark is the only all-caps element (brand 
 
 The photo shows at 138 × 186 px, the exact height of the text block, so it needs to be a **3:4 portrait**.
 
-- **Best:** a 276 × 372 px JPG in `assets/headshots/` (ask Tyler), linked as `https://midwestcards.github.io/mwc-email-signature/assets/headshots/<name>.jpg`. The page has a **headshot maker** that crops any photo to that size for you.
+- **Best:** a 276 × 372 px JPG in `assets/headshots/` (ask Tyler), linked as `https://midwestcards.github.io/mwc-email-signature/assets/headshots/<name>-3x4.jpg`. The page has a **headshot maker** that crops any photo to that size and names the file after you.
+- Add it as a **new file**. Never overwrite an existing headshot: older signatures point at it (for example, Kate's current signature uses `kate.jpg`).
 - **Also works:** a Google Drive link to a photo shared "anyone with the link can view". The generator turns it into a Google image link cropped to 3:4.
 - The generator warns you if a photo isn't 3:4. It never stretches a photo (height is set to auto), but a square photo won't line up with the text.
 
@@ -45,9 +46,9 @@ All signature images live in `assets/` and are served by this repo's GitHub Page
 
 - `midwestcards_horizontal_color.png` — logo used by the current signature (from the brand library, high-res)
 - `insider_banner.png`, `icons/`, `midwestcards_stacked_color.png` — used by the previous signature design; not used by the current generator, but **kept because older signatures in use still point at them**
-- `headshots/` — team headshots (3:4, 276 × 372 px); add new ones here so everyone has a permanent photo URL
+- `headshots/` — team headshots. New ones are 3:4 (276 × 372 px) and go in as new files (`<name>-3x4.jpg`) so everyone has a permanent photo URL. `kate.jpg` is square, from the previous design, and stays because Kate's current signature uses it
 
-To swap an image, replace the file **keeping the same filename** and push — Pages redeploys automatically.
+To swap the logo or another shared image, replace the file **keeping the same filename** and push — Pages redeploys automatically. Headshots are the exception: a new photo gets a new filename.
 
 The page carries a `noindex, nofollow` robots meta tag — it's an internal tool and must stay out of search engines. Keep that tag in place, and don't add office addresses anywhere on this page (people type their own work address into the form).
 
