@@ -74,7 +74,7 @@
 <body>
   <header>
     <div class="wrap">
-      <p class="eyebrow">Midwest Cards</p>
+      <p class="eyebrow">Team tools</p>
       <h1>Email Signature Generator</h1>
       <p>Fill in your details, check the preview, and copy your signature into Gmail or Outlook. You get three versions: one for new emails, a short one for replies, and plain text for the Gmail phone app.</p>
     </div>
@@ -137,8 +137,8 @@
               <canvas id="cropCanvas" width="276" height="372" aria-label="Cropped headshot preview"></canvas>
               <div style="flex:1;min-width:180px">
                 <input id="cropFile" type="file" accept="image/*" />
-                <p class="hint">Pick a photo with your face near the middle. It's cropped to 3:4 and sized for the signature, then you can download it and send it to Tyler for <code>assets/headshots/</code>.</p>
-                <a id="cropDownload" class="btn btn-ghost btn-sm hidden" download="headshot.jpg" href="#">Download headshot.jpg</a>
+                <p class="hint">Pick a photo with your face near the middle. It's cropped to 3:4 and sized for the signature, then you can download it and send it to Tyler to add to <code>assets/headshots/</code> as a new file.</p>
+                <a id="cropDownload" class="btn btn-ghost btn-sm hidden" download="headshot-3x4.jpg" href="#">Download headshot</a>
               </div>
             </div>
           </details>
@@ -422,6 +422,8 @@ function cropPhoto(file) {
     ctx.imageSmoothingQuality = "high";
     ctx.drawImage(img, sx, sy, sw, sh, 0, 0, c.width, c.height);
     const dl = $("cropDownload"); dl.href = c.toDataURL("image/jpeg", 0.9); dl.classList.remove("hidden");
+    // Name the file after the person so it goes into assets/headshots/ as a new file, e.g. kate-smith-3x4.jpg
+    dl.download = (clean($("f_name").value).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "headshot") + "-3x4.jpg";
     URL.revokeObjectURL(img.src);
   };
   img.src = URL.createObjectURL(file);
